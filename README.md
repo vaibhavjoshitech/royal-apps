@@ -8,7 +8,6 @@ Before running the Laravel application, ensure you have the following software i
 
 - PHP (>=7.4)
 - Composer
-- MySQL or any other compatible database
 
 ## Installation
 
@@ -18,3 +17,6 @@ Follow the steps below to install and set up the Laravel application:
 
    ```bash
    git clone https://github.com/vaibhavjoshitech/royal-apps.git
+
+2. composer install
+3. run laravel by command php artisan serve
