@@ -17,20 +17,29 @@ class ApiClient
     }
 
     public function login($email, $password)
-    {   
-        $response = $this->client->post('/api/v2/token', [
-            'json' => [
-                'email' => $email,
-                'password' => $password
-            ],
-        ]);
-        
-        $data = json_decode($response->getBody(), true);
+    { 
+        try {
+            $response = $this->client->post('/api/v2/token', [
+                'json' => [
+                    'email' => $email,
+                    'password' => $password
+                ],
+            ]);
 
-        if (isset($data['token_key'])) {
-            Session::put('token_key', $data['token_key']);
-            return true;
+            $data = json_decode($response->getBody(), true);
+
+            if (isset($data['token_key'])) {
+                Session::put('token_key', $data['token_key']);
+                return true;
+            }
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            if ($e->getResponse()->getStatusCode() == 401) {
+                return false;
+            }
+        } catch (\Exception $e) {
+            Log::error('Login API error: ' . $e->getMessage());
         }
+
         return false;
     }
 
