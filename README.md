@@ -16,7 +16,7 @@ Follow the steps below to install and set up the Laravel application:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/vaibhavjoshitech/royal-apps.git
+   git clone https://github.com/vaibhavjoshitech/royal-apps.git .
 
 2. composer install
 3. run laravel by command php artisan serve
